@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS LBtracker_db;
+CREATE DATABASE LBtracker_db;
