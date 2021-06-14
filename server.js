@@ -4,38 +4,44 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-
+const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+const mysql = require('mysql');
+const handlebars = require('express-handlebars');
 const app = express();
-const PORT = process.env.PORT || 3306;
+const port = 3000;
 
-// Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ helpers });
+const connection = mysql.createConnection({
+    host: 'localhost',
 
-const sess = {
-    secret: 'Super secret secret',
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
-    })
-};
+    // Your port; if not 3306
+    port: 3306,
 
-app.use(session(sess));
+    // Your username
+    user: 'root',
 
-// Inform Express.js on which template engine to use
-app.engine('handlebars', hbs.engine);
+    // Your password
+    password: '808melo',
+    database: 'fitness_DB',
+});
+
 app.set('view engine', 'handlebars');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.engine('handlebars', handlebars({
+    layoutsDir: './views/layouts'
+}))
 
-app.use(routes);
+connection.connect((err) => {
+    if (err) throw err;
+});
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.render('main', { layout: 'index' })
+});
+
+app.listen(port, () => {
+    console.log(`App listening at :${port}`)
 });
