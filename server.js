@@ -42,6 +42,6 @@ app.get('/', (req, res) => {
     res.render('main', { layout: 'index' })
 });
 
-app.listen(port, () => {
-    console.log(`App listening at :${port}`)
+app.listen(PORT, () => {
+    console.log(`App listening at :${PORT}`)
 });
