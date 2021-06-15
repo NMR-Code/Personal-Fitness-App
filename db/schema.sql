@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS LBtracker_db;
-CREATE DATABASE LBtracker_db;
+DROP DATABASE IF EXISTS fitness_db;
+CREATE DATABASE fitness_db;
