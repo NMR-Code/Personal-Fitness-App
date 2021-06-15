@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
     user: 'root',
 
     // Your password
-    password: 'ZXB7943_!a',
+    password: ,
     database: 'fitness_DB',
 });
 
