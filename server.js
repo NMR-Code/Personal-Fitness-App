@@ -10,7 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const mysql = require('mysql');
 const handlebars = require('express-handlebars');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -42,6 +42,6 @@ app.get('/', (req, res) => {
     res.render('main', { layout: 'index' })
 });
 
-app.listen(port, () => {
-    console.log(`App listening at :${port}`)
+app.listen(PORT, () => {
+    console.log(`App listening at :${PORT}`)
 });
