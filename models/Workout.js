@@ -25,7 +25,7 @@ Workout.init({
             unique: false
         },
 
-        currentweek: {
+        currentWeek: {
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: false

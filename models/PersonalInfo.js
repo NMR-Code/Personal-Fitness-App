@@ -36,7 +36,7 @@ personalInfo.init({
         },
     },
 
-    goal: {
+    goalWeight: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
         validate: {
