@@ -17,19 +17,19 @@ router.post('/', withAuth, async(req, res) => {
 
 router.delete('/:id', withAuth, async(req, res) => {
     try {
-        const workoutData = await Workout.destroy({
+        const WorkoutData = await Workout.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
 
-        if (!workoutData) {
-            res.status(404).json({ message: 'No project found with this id!' });
+        if (!WorkoutData) {
+            res.status(404).json({ message: 'No Workout found with this id!' });
             return;
         }
 
-        res.status(200).json(workoutData);
+        res.status(200).json(WorkoutData);
     } catch (err) {
         res.status(500).json(err);
     }

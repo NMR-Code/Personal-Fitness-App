@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+const { Personalinfo } = require('.');
 
 class personalInfo extends Model {}
 
@@ -35,18 +36,19 @@ personalInfo.init({
             isDecimal: true,
         },
     },
-
     goalWeight: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            isDecimal: true,
+            isNumeric: true,
         },
     },
+}, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'personalInfo',
+    modelName: 'Personalinfo',
 });
-module.exports = personalInfo;
+
+module.exports = Personalinfo;
